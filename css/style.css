@@ -1,0 +1,47 @@
+#historialOutput {
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    margin-bottom: 20px;
+    background-color: #f9f9f9; 
+    color: #333; 
+    font-family: Arial, sans-serif; 
+    max-width: 500px; 
+    overflow: auto; 
+}
+#clientes {
+    font-size: 20px;
+}
+#calcularButton{
+padding: 10px 20px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+width: 50%;
+}
+#calcularButton:hover{
+background-color: #45a049;
+}
+#calcularButton:active{
+background-color: #3e8e41;
+}
+body{
+    text-align: center;
+}
+
+#calcularButton2{
+padding: 10px 20px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+width: 50%;
+}
+#calcularButton2:hover{
+background-color: #45a049;
+}
+#calcularButton2:active{
+background-color: #3e8e41;
+}
