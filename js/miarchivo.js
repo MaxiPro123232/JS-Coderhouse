@@ -4,6 +4,11 @@ let historial = [];
 const historialOutputDiv = document.createElement('div');
 historialOutputDiv.id = 'historialOutput';
 document.body.appendChild(historialOutputDiv)
+//crear boton para borrar el historial
+const botonclean = document.createElement('button');
+botonclean.id = 'calcularButton2'
+botonclean.innerText = "Borrar historial"
+document.body.appendChild(botonclean)
 //funcion que carga el historial de la memoria local
 function loadFromLocalStorage() {
 const savedHistorial = localStorage.getItem('historial');
@@ -48,7 +53,12 @@ historialOutputDiv.innerHTML += mensaje;
 function saveToLocalStorage() {
 localStorage.setItem('historial', JSON.stringify(historial));
 }
-
+//borrar el historial
+function clearHistorial() {
+historial = [];
+saveToLocalStorage(); 
+displayHistorial(); 
+}
 //funcionamiento del boton de calcular
 document.getElementById('calcularButton').addEventListener('click', () => {
 let nombre = document.getElementById('nombreInput').value.trim();
@@ -102,6 +112,10 @@ Swal.fire("Changes are not saved", "", "info");
 }
 });
 
+//funcion del boton de borrar historial
+document.getElementById('calcularButton2').addEventListener('click',
+clearHistorial
+)
 //invocar a la funcion para cargar el historial
 loadFromLocalStorage();
 
