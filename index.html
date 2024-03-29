@@ -5,22 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMPG</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <h1>CALCULADORA DE IMPUESTO A LA GANANCIA</h1>
     <div>
-        <label for="nombreInput">Nombre:</label>
+        <label for="nombreInput">Nombre de Usuario:</label>
         <input type="text" id="nombreInput">
-        <label for="salarioInput">Salario:</label>
+        <span class="error" id="nombreError"></span>
+        <br>
+        <br>
+        <label for="salarioInput">Salario Aproximado:</label>
         <input type="number" id="salarioInput">
+        <span class="error" id="salarioError"></span>
+        <br>
+        <br>
         <label for="porcentajeInput">Porcentaje de aumento:</label>
         <input type="number" id="porcentajeInput">
+        <span class="error" id="porcentajeError"></span>
     </div>
     <br>
     <br>
     <button id="calcularButton">Calcular</button>
     <h2>Historial</h2>
     <script src="js/miarchivo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
