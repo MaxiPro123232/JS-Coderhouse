@@ -1,15 +1,34 @@
+const API = 'https://randomuser.me/api/?results=10'
+const pedirPosts = async() =>{
+    const respuesta= await fetch(API)
+    const data = await respuesta.json()
+    data.results.forEach((person)=>{
+        guardarnombres.push(person.name.first)
+    })
+}
+pedirPosts()
+
+const guardarnombres = []
+
 //array del historial
+
 let historial = [];
+
 //crear div del historial
+
 const historialOutputDiv = document.createElement('div');
 historialOutputDiv.id = 'historialOutput';
 document.body.appendChild(historialOutputDiv)
+
 //crear boton para borrar el historial
+
 const botonclean = document.createElement('button');
 botonclean.id = 'calcularButton2'
 botonclean.innerText = "Borrar historial"
 document.body.appendChild(botonclean)
+
 //funcion que carga el historial de la memoria local
+
 function loadFromLocalStorage() {
 const savedHistorial = localStorage.getItem('historial');
 if (savedHistorial) {
@@ -32,7 +51,19 @@ Toast.fire({
     title: "Inicio Exitoso!"
 });
 }
+//funcion para validar nombre
+
+function nombrevalido(nombre){
+    let result = false
+    guardarnombres.forEach((person)=>{
+        if(person === nombre){
+            result = true
+        }
+    })
+    return result
+    }
 //funcion del display del historial
+
 function displayHistorial() {
 const historialOutputDiv = document.getElementById('historialOutput');
 historialOutputDiv.innerHTML = '';
@@ -49,24 +80,32 @@ historialOutputDiv.innerHTML += mensaje;
 }
 });
 }
+
 //funcion que guarda el array del historial a la memoria local
+
 function saveToLocalStorage() {
 localStorage.setItem('historial', JSON.stringify(historial));
 }
+
 //borrar el historial
+
 function clearHistorial() {
 historial = [];
 saveToLocalStorage(); 
 displayHistorial(); 
 }
+
 //funcionamiento del boton de calcular
+
 document.getElementById('calcularButton').addEventListener('click', () => {
 let nombre = document.getElementById('nombreInput').value.trim();
 let salario = parseFloat(document.getElementById('salarioInput').value);
 let porcentaje = parseFloat(document.getElementById('porcentajeInput').value);
 
+const nmv = nombrevalido(nombre)
+
 // Validación del nombre
-if (!/^[a-zA-Z]+$/.test(nombre)) {
+if (!/^[a-zA-Z]+$/.test(nombre) && !nmv) {
 document.getElementById('nombreError').textContent = "El nombre solo puede contener letras.";
 } else {
 document.getElementById('nombreError').textContent = "";
@@ -85,7 +124,7 @@ document.getElementById('porcentajeError').textContent = "El porcentaje debe ser
 } else {
 document.getElementById('porcentajeError').textContent = "";
 }
-if (/^[a-zA-Z]+$/.test(nombre) && !isNaN(salario) && salario > 0 && !isNaN(porcentaje) && porcentaje >= 0 && porcentaje <= 100) {
+if (/^[a-zA-Z]+$/.test(nombre)&& !nmv && !isNaN(salario) && salario > 0 && !isNaN(porcentaje) && porcentaje >= 0 && porcentaje <= 100) {
 const total = salario * (1 + porcentaje / 100);
 const pagaimp = total > 1000000 ? "SI" : "NO";
 const operacionAGuardar = {
@@ -119,31 +158,3 @@ clearHistorial
 //invocar a la funcion para cargar el historial
 loadFromLocalStorage();
 
-// const API = 'https://randomuser.me/api/?results=10'
-
-// const respuesta= await fetch(API)
-// console.log(respuesta)
-
-
-
-// fetch(API)
-// .then((response)=>{
-//     return response.json();
-// })
-// .then((data)=>{
-//     console.log(data)
-//     const container = document.querySelector("#container")
-
-//     data.results.forEach((person)=>{
-//         const div2 = document.createElement("div");
-//         div2.innerHTML = `
-//         <p>Nombre: ${person.name.first} ${person.name.last}</p>
-//         <p>Numero de telefono: ${person.phone}</p>
-//         <p>Fecha de nacimiento: ${new Date(person.dob.date).toLocaleDateString()}</p>
-//         <p>Genero: ${person.gender}</p>`;
-//         container.appendChild(div2)
-//     })
-// })
-// .catch((error)=>{
-// console.log(error)
-// })

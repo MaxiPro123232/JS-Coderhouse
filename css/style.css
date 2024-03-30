@@ -7,6 +7,9 @@
     font-family: Arial, sans-serif; 
     max-width: 500px; 
     overflow: auto; 
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 15px;
 }
 #clientes {
     font-size: 20px;
@@ -47,4 +50,7 @@ body{
 }
 input{
     background-color: cornsilk; 
+}
+*{
+    text-align: center;
 }
