@@ -94,19 +94,19 @@ resultado: total,
 pagaimp: pagaimp
 };
 Swal.fire({
-title: "Do you want to save the changes?",
+title: "Quiere guardar los cambios realizados?",
 showDenyButton: true,
 showCancelButton: true,
-confirmButtonText: "Save",
-denyButtonText: `Don't save`
+confirmButtonText: "Guardar",
+denyButtonText: `No Guardar`
 }).then((result) => {
 if (result.isConfirmed) {
-Swal.fire("Saved!", "", "success");
+Swal.fire("Guardado!", "", "success");
 historial.push(operacionAGuardar);
 saveToLocalStorage();
 displayHistorial();
 } else if (result.isDenied) {
-Swal.fire("Changes are not saved", "", "info");
+Swal.fire("Los cambios no han sido guardados", "", "info");
 }
 });
 }
@@ -119,3 +119,31 @@ clearHistorial
 //invocar a la funcion para cargar el historial
 loadFromLocalStorage();
 
+// const API = 'https://randomuser.me/api/?results=10'
+
+// const respuesta= await fetch(API)
+// console.log(respuesta)
+
+
+
+// fetch(API)
+// .then((response)=>{
+//     return response.json();
+// })
+// .then((data)=>{
+//     console.log(data)
+//     const container = document.querySelector("#container")
+
+//     data.results.forEach((person)=>{
+//         const div2 = document.createElement("div");
+//         div2.innerHTML = `
+//         <p>Nombre: ${person.name.first} ${person.name.last}</p>
+//         <p>Numero de telefono: ${person.phone}</p>
+//         <p>Fecha de nacimiento: ${new Date(person.dob.date).toLocaleDateString()}</p>
+//         <p>Genero: ${person.gender}</p>`;
+//         container.appendChild(div2)
+//     })
+// })
+// .catch((error)=>{
+// console.log(error)
+// })
